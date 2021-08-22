@@ -15,17 +15,15 @@ test
 
 test
 ('Forgot password link exists', async t => {
-	// TODO - assert that the forgot password link exists.
-}).skip;
+	await t.expect(LoginPage.forgotPasswordLink.exists).ok({ timeout: Times.SHORT });
+});
 
 test
 ('Submit valid credentials and accounts', async t => {
-	//TODO - Login with the created account and assert a correct login.
-}).skip;
+	await t.click(this.customerNumber).typeText('208102287').click(this.email).typeText('joejoy1994@gmail.com').click(this.password).typeText('Joeljoy2021').click(this.submitButton);
+});
 
 test
 ('Submit invalid credentials and show an error message', async t => {
-	// TODO - Type a wrong password and assert that an error message appear.
-	// NOTE: if the password is type 5 times wrong in a row the account is blocked. Might be good idea to use the same account
-	// as the login to prevent the account lock.
-}).skip;
+	await t.click(this.customerNumber).typeText('208102287').click(this.email).typeText('joejoy1994@gmail.com').click(this.password).typeText('Joeljoy2022').click(this.submitButton).expect(LoginPage.errorMessage.exists).ok({ timeout: Times.SHORT });
+});
